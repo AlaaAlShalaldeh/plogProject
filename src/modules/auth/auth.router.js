@@ -5,7 +5,11 @@ import bcrypt from "bcrypt";
 const app = Router();
 app.post('/',(req,res)=>{
     try{
-
+        const {token}=req.headers;
+        const decoded = jwt.verify(token, 'alaa');
+        if(decoded.userType !="admin"){
+          return res.status(401).json({message:"unauthorized"});
+        }
         const {name,email,password,userType} =req.body;
         const  hashedPassword = bcrypt.hashSync(password,4);
         userModel.create({name:name,email:email,password:hashedPassword,userType:userType},(err,result)=>{
