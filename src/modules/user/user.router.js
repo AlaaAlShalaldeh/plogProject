@@ -10,18 +10,18 @@ app.delete('/:id',async(req,res)=>{
   if(!user){
     return res.status(404).json({message:"user not found"});
   }
-  return res.status(200).json({message:"user successfully updated",data:user});
+  return res.status(200).json({message:"user successfully deleted",data:user});
 });
 app.get('/',async(req,res)=>{
-  const {token}=req.headers;
-  const decoded = jwt.verify(token, 'alaa');
-  if(decoded.name !="alaa"){
-    return res.status(401).json({message:"unauthorized"});
-  }
+  // const {token}=req.headers;
+  // const decoded = jwt.verify(token, 'alaa');
+  // if(decoded.userType !="admin"){
+  //   return res.status(401).json({message:"unauthorized"});
+  // }
   const user=await userModel.findAll({
-    attributes:['id','name','email']  
+    attributes:['id','name','email','userType']  
   });
-
+  console.log(user)
   return res.status(200).json({message:"success",data:user});
 });
 app.put('/:id',async(req,res)=>{
@@ -33,6 +33,6 @@ app.put('/:id',async(req,res)=>{
   if(!user[0]){
     return res.status(404).json({message:"user not found"});
   }
-  return res.status(200).json({message:"user successfully deleted"});
+  return res.status(200).json({message:"user successfully updated"});
 });
 export default app;

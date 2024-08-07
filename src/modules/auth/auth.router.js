@@ -6,9 +6,13 @@ const app = Router();
 app.post('/',(req,res)=>{
     try{
 
-        const {name,email,password} =req.body;
-        var hashedPassword = bcrypt.hashSync(password,4);
-        userModel.create({name:name,email:email,password:hashedPassword});
+        const {name,email,password,userType} =req.body;
+        const  hashedPassword = bcrypt.hashSync(password,4);
+        userModel.create({name:name,email:email,password:hashedPassword,userType:userType},(err,result)=>{
+            if(err)
+                 return res.status(404).json({message:err.message});
+        });
+        
         return res.status(201).json({message:"success"});
     }
     catch(error){
@@ -30,7 +34,7 @@ app.post('/login',async(req,res)=>{
     if(!checkUser){
         return res.status(404).json({message:"invalid password"});
     }
-    const token = jwt.sign({id:user.id,name:user.name}, 'alaa');
+    const token = jwt.sign({id:user.id,name:user.name,userType:user.userType }, 'alaa');
     return res.status(200).json({message:"success",token});
 });
 export default app;

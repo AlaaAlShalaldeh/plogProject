@@ -21,6 +21,12 @@ const userModel = sequelize.define('User',
   confirmEmail:{
     type: DataTypes.BOOLEAN,
     defaultValue: false
+  },
+  userType:{
+    type:DataTypes.STRING,
+    defaultValue: 'user'
+
+
   }
   }
 )
