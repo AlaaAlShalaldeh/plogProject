@@ -3,7 +3,7 @@ import { Sequelize } from 'sequelize';
 //     host: 'localhost',
 //     dialect:"mysql" /* one of 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql' | 'db2' | 'snowflake' | 'oracle' */
 //   });
-export const sequelize = new Sequelize('freedb_plog_project', 'freedb_alaa_Sh', 'c45XC&57#pMxdQu', {
+export const sequelize = new Sequelize('freedb_plog_project_alaa', 'freedb_alaa22', 'Td7a!9bz!7F&xAd', {
     host: 'sql.freedb.tech',port: 3306,
     dialect:"mysql" /* one of 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql' | 'db2' | 'snowflake' | 'oracle' */
   });
